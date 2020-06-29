@@ -26,7 +26,6 @@ class WebClientTest {
 
 
     @Test
-
     void callMethod_Success() {
 
         String apiURL = "https://httpbin.org/get";
@@ -35,27 +34,14 @@ class WebClientTest {
             assert (responseEntity != null);
             assert (responseEntity.getStatusCode() == HttpStatus.OK);
             assert (responseEntity.getBody() != null);
-        }catch (APICallException e){
+        } catch (APICallException e) {
 
         }
 
     }
 
 
-    @Test
-    void callMethod_HandlingServerError() {
 
-        String apiURL = "https://takehome.io/twitter";
-
-        assertThrows(APICallException.class, () -> {
-                    ResponseEntity<?> responseEntity = WebClient.callMethod(apiURL, MediaType.APPLICATION_JSON, HttpMethod.GET);
-                    assert (responseEntity != null);
-                    assert (responseEntity.getStatusCode() == HttpStatus.OK);
-                    assert (responseEntity.getBody() != null);
-
-                });
-
-    }
 
 
 }
