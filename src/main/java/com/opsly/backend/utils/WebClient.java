@@ -8,8 +8,9 @@ import java.util.Arrays;
 public class WebClient {
 
 
-    public static ResponseEntity<?> callMethod(String url, MediaType mediaType, HttpMethod httpMethod) {
+    public static ResponseEntity<?> callMethod(String url, MediaType mediaType, HttpMethod httpMethod) throws APICallException {
         RestTemplate restTemplate = new RestTemplate();
+        restTemplate.setErrorHandler(new RestTemplateResponseErrorHandler());
         HttpEntity<String> httpEntity = getHttpEntity(mediaType);
         return restTemplate.exchange(url, httpMethod, httpEntity, Object.class);
     }

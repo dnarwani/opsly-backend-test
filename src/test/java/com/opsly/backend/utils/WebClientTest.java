@@ -1,31 +1,61 @@
 package com.opsly.backend.utils;
 
 import org.junit.jupiter.api.Test;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpMethod;
-import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
+import org.springframework.http.*;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class WebClientTest {
-
-
-
 
 
     @Test
     void getHttpEntity() {
         HttpEntity<String> httpEntity = WebClient.getHttpEntity(MediaType.APPLICATION_JSON);
-        assert (httpEntity!=null);
-        assert (httpEntity.getHeaders().size()>0);
+        assert (httpEntity != null);
+        assert (httpEntity.getHeaders().size() > 0);
     }
 
     @Test
-    void callMethod() {
+    void callMethodInvalidURI() {
 
-        ResponseEntity<?> responseEntity = WebClient.callMethod("", MediaType.APPLICATION_JSON, HttpMethod.GET);
-        assert(responseEntity!=null);
+        assertThrows(IllegalArgumentException.class, () -> {
+                    ResponseEntity<?> responseEntity = WebClient.callMethod("", MediaType.APPLICATION_JSON, HttpMethod.GET);
+                }
+        );
+    }
+
+
+    @Test
+
+    void callMethod_Success() {
+
+        String apiURL = "https://httpbin.org/get";
+        try {
+            ResponseEntity<?> responseEntity = WebClient.callMethod(apiURL, MediaType.APPLICATION_JSON, HttpMethod.GET);
+            assert (responseEntity != null);
+            assert (responseEntity.getStatusCode() == HttpStatus.OK);
+            assert (responseEntity.getBody() != null);
+        }catch (APICallException e){
+
+        }
 
     }
+
+
+    @Test
+    void callMethod_HandlingServerError() {
+
+        String apiURL = "https://takehome.io/twitter";
+
+        assertThrows(APICallException.class, () -> {
+                    ResponseEntity<?> responseEntity = WebClient.callMethod(apiURL, MediaType.APPLICATION_JSON, HttpMethod.GET);
+                    assert (responseEntity != null);
+                    assert (responseEntity.getStatusCode() == HttpStatus.OK);
+                    assert (responseEntity.getBody() != null);
+
+                });
+
+    }
+
+
 }
