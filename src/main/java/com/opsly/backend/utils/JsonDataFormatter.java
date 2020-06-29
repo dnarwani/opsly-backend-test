@@ -1,7 +1,6 @@
 package com.opsly.backend.utils;
 
-import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.*;
 
 public class JsonDataFormatter {
 
@@ -23,4 +22,6 @@ public class JsonDataFormatter {
         return sb.toString();
 
     }
+
+
 }
