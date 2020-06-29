@@ -10,6 +10,10 @@ public class HomeController {
 
     @RequestMapping("/")
     public String index() {
+
+        String res="";
+
+
         return "{}";
     }
 
