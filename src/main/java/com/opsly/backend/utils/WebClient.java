@@ -12,9 +12,10 @@ public class WebClient {
         RestTemplate restTemplate = new RestTemplate();
         restTemplate.setErrorHandler(new RestTemplateResponseErrorHandler());
         HttpEntity<String> httpEntity = getHttpEntity(mediaType);
-        return restTemplate.exchange(url, httpMethod, httpEntity, Object.class);
+        ResponseEntity<?> responseEntity = restTemplate.exchange(url, httpMethod, httpEntity, Object.class);
+        return responseEntity;
     }
-    
+
     public static HttpEntity<String> getHttpEntity(MediaType mediaType) {
 
         HttpHeaders headers = new HttpHeaders();

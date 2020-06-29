@@ -8,9 +8,9 @@ public class APICallException extends IOException {
     MVP impl of api call exception
      */
 
-    public APICallException(String errorMessage){
+    public APICallException(String errorMessage) {
 
 
-        super(TimeUtils.getCurrentTime()+" -- "+ errorMessage);
+        super(TimeUtils.getCurrentTime() + " -- " + errorMessage);
     }
 }

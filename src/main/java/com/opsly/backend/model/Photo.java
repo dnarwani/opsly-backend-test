@@ -1,10 +1,10 @@
 package com.opsly.backend.model;
 
-public class InstagramUpdate extends SocialMediaUpdate{
-    String picture;
+public class Photo extends SocialMediaUpdate {
+    String picture; // may be url of the picture or complex object
 
-    public InstagramUpdate(String username,String picture) {
-        this.username=username;
+    public Photo(String username, String picture) {
+        this.username = username;
         this.picture = picture;
     }
 

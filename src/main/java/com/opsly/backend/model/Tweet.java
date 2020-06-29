@@ -1,10 +1,10 @@
 package com.opsly.backend.model;
 
-public class TwitterUpdate extends SocialMediaUpdate{
+public class Tweet extends SocialMediaUpdate {
     String tweet;
 
-    public TwitterUpdate(String username,String tweet) {
-        this.username=username;
+    public Tweet(String username, String tweet) {
+        this.username = username;
         this.tweet = tweet;
     }
 

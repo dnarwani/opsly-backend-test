@@ -5,7 +5,9 @@ import com.opsly.backend.utils.WebClient;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.client.ResourceAccessException;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class SocialNetworkStatusReader {
@@ -42,9 +44,14 @@ public class SocialNetworkStatusReader {
     private String getNetworkUpdates(String uri) {
         try {
             ResponseEntity<?> responseEntity = WebClient.callMethod(uri, MediaType.APPLICATION_JSON, HttpMethod.GET);
-            return responseEntity.getBody().toString();
+            Object body = responseEntity.getBody();
+            return responseEntity.getBody().toString().replace('\n', ' ');// todo here you should parse the body to relavent Model objects for further impl
+        } catch (ResourceAccessException exception) {
+            return '"' + "Unable to access" + uri + '"';
         } catch (APICallException e) {
             return e.getMessage();
         }
     }
+
+
 }

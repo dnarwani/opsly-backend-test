@@ -1,10 +1,10 @@
 package com.opsly.backend.model;
 
-public class FaceBookUpdate extends SocialMediaUpdate{
+public class Status extends SocialMediaUpdate {
     String status;
 
-    public FaceBookUpdate(String username,String status) {
-        this.username=username;
+    public Status(String username, String status) {
+        this.username = username;
         this.status = status;
     }
 
