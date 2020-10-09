@@ -1,0 +1,9 @@
+spring:
+  application:
+    name: opsly-assignment
+
+server:
+  port: 3000
+
+opsly:
+  url: https://takehome.io
